@@ -31,3 +31,23 @@ python3 openmodemconfigutil.py
  - requests
  - psutil
  - pywebview
+
+## Running with Docker
+
+1. Build the image:
+   
+   ```bash
+   docker build -t openmodemconfig .
+   ```
+
+2. Allow access to the local X11 server:
+   
+   ```bash
+   xhost +local:docker
+   ```
+
+3. Run the image:
+   
+   ```bash
+   docker run -it --rm --env=DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --device=/dev/ttyUSB0 openmodemconfig
+   ```
