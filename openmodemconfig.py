@@ -419,10 +419,10 @@ class KISSInterface(Interface):
 	def processConfig(self, data):
 		RNS.log("Processing config")
 		md5 = hashlib.md5()
-		md5.update(data[:16])
+		md5.update(data[:-16])
 		md5_result = md5.digest()
 
-		if md5_result == data[16:]:
+		if md5_result == data[-16:]:
 			RNS.log("Config checksum match")
 			self.config_p				= data[KISS.ADDR_E_P]
 			self.config_slottime 		= data[KISS.ADDR_E_SLOTTIME]
